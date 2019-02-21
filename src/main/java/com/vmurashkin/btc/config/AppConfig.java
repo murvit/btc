@@ -10,8 +10,6 @@ public class AppConfig {
 
   /**
    * This Bean disables CORS
-   *
-   * @return
    */
   @Bean
   public WebMvcConfigurer corsConfigurer() {

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ApiExceptionHandler {
 
     @ExceptionHandler(value = {NotReceivedException.class})
-    protected ResponseEntity<ErrorDTO> handleNotRecievedException(NotReceivedException ex) {
+    protected ResponseEntity<ErrorDTO> handleNotReceivedException(NotReceivedException ex) {
         log.error("Entity not found", ex);
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
