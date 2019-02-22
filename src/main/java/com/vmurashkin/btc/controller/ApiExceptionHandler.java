@@ -22,4 +22,13 @@ public class ApiExceptionHandler {
                 .body(new ErrorDTO(ex.getMessage()));
     }
 
+    @ExceptionHandler(value = {Exception.class})
+    protected ResponseEntity<ErrorDTO> handleException(Exception ex) {
+        log.error("Something wrong", ex);
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .body(new ErrorDTO("Something went wrong"));
+    }
+
 }
