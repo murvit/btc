@@ -1,6 +1,7 @@
 package com.vmurashkin.btc.controller;
 
 import com.vmurashkin.btc.entity.Btc;
+import com.vmurashkin.btc.entity.Currency;
 import com.vmurashkin.btc.service.ProxyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api/btc")
@@ -40,11 +38,11 @@ public class BtcController {
     return ResponseEntity.ok().build();
   }
 
-  @GetMapping(path = "json", produces = MediaType.APPLICATION_JSON_VALUE)
-  @ApiOperation(value = "get json")
+  @GetMapping(path = "currency/{currency}", produces = MediaType.APPLICATION_JSON_VALUE)
+  @ApiOperation(value = "get currency price")
   @ApiResponses(value = {@ApiResponse(code = 200, message = "OK")})
   @ResponseStatus(HttpStatus.OK)
-  public ResponseEntity<Btc> getJson() {
-    return ResponseEntity.ok().body(proxyService.getJson());
+  public ResponseEntity<Btc> getJson(@PathVariable Currency currency) {
+    return ResponseEntity.ok().body(proxyService.getJson(currency));
   }
 }
