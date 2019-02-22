@@ -2,6 +2,7 @@ package com.vmurashkin.btc.controller;
 
 import com.vmurashkin.btc.entity.Btc;
 import com.vmurashkin.btc.entity.Currency;
+import com.vmurashkin.btc.model.BtcUser;
 import com.vmurashkin.btc.service.ProxyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,4 +46,13 @@ public class BtcController {
   public ResponseEntity<Btc> getJson(@PathVariable Currency currency) {
     return ResponseEntity.ok().body(proxyService.getJson(currency));
   }
+
+  @GetMapping(path = "user/", produces = MediaType.APPLICATION_JSON_VALUE)
+  @ApiOperation(value = "get user")
+  @ApiResponses(value = {@ApiResponse(code = 200, message = "OK")})
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseEntity<BtcUser> getUser() {
+    return ResponseEntity.ok().body(proxyService.getUser());
+  }
+
 }
